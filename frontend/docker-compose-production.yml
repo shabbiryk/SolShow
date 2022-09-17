@@ -1,0 +1,23 @@
+version: "3.1"
+
+services:
+  reconwithme-production:
+    container_name: SolShow-production
+    hostname: SolShow-production
+    build:
+      context: ./
+      dockerfile: Dockerfile
+      args:
+        - NODE_ENV=development
+        - IMG=14
+        - LOCATION=SolShow-production
+    restart: always
+
+    user: root:root
+    env_file:
+      - ./.env
+    environment:
+      - NODE_ENV=${NODE_ENV}
+      - COMPOSE_PROJECT_NAME=SolShow-production
+    ports:
+      - ${PORT}:${PORT}
